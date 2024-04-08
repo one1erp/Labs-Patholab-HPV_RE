@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="HPV_RE.New_HPV_Ctrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="432" d:DesignWidth="645"
+             FlowDirection="RightToLeft"
+             Background="Lavender">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <Style TargetType="xctk:DateTimePicker">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="3"></Setter>
+            <Setter Property="Format" Value="ShortDate"></Setter>
+        </Style>
+        <Style TargetType="Expander">
+
+            <Setter Property="Grid.RowSpan" Value="2"></Setter>
+            <Setter Property="ExpandDirection" Value="Left"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+        <Style TargetType="WrapPanel" x:Key="wp">
+            <Setter Property="Width" Value="300"></Setter>
+            <Setter Property="Margin" Value="0"></Setter>
+        </Style>
+        <Style   x:Key="rdb" TargetType="RadioButton">
+            <Setter Property="IsThreeState" Value="False"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Grid.Column" Value="1"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Width" Value="30"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Grid.Column" Value="1"></Setter>
+
+        </Style>
+
+        <Style  TargetType="CheckBox">
+
+            <Setter Property="IsThreeState" Value="False"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Grid.Column" Value="1"></Setter>
+
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Grid.Column" Value="1"></Setter>
+
+        </Style>
+
+        <Style   TargetType="Button">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Margin" Value="17"></Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid ShowGridLines="True" VerticalAlignment="Top" HorizontalAlignment="Center" Width="645" Height="432">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock  FontSize="22" FontWeight="Bold"
+                   TextAlignment="Center" Text="הזנת תוצאות חדש - HPV" 
+                    Grid.Row="0"  Width="Auto" />
+
+        <Grid x:Name="innerGrid" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+             </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Width="70" Margin="5,15,5,5">HPV16</TextBlock>
+            <TextBlock Grid.Column="1" Width="70" Margin="5,15,5,5">HPV18</TextBlock>
+            <TextBlock Grid.Column="2" Margin="5,15" Width="85">HPVOHR</TextBlock>
+            <TextBlock Grid.Column="2" Grid.Row="5" Width="85" HorizontalAlignment="Right" TextAlignment="Right" Margin="5,15,5,5" Visibility="Hidden">:HPV TYPE</TextBlock>
+            <TextBlock Text="הערות:" Grid.Row="2" Width="85" Grid.Column="0" Margin="5,15,5,5" />
+            <TextBlock Grid.Column="0" Grid.Row="4" Margin="22,5,39,5" Width="Auto">תאריך ביצוע HPV:</TextBlock>
+            <!--<DatePicker Name="datePicker" Grid.Column="1" Grid.Row="4"></DatePicker>-->
+            <xctk:DateTimePicker x:Name="datePicker" Grid.Column="1" Grid.Row="4"  />
+            <CheckBox Name="checkBoxLBC" Grid.Column="0" Grid.Row="5" FontSize="16">הוספת בדיקות LBC</CheckBox>
+            <ComboBox Name="comboBoxHPV16" Grid.Column="0" Grid.Row="1" Margin="5,0"></ComboBox>
+            <ComboBox Name="comboBoxHPV18" Grid.Column="1" Grid.Row="1" Margin="5,0"></ComboBox>
+            <ComboBox Name="comboBoxHPVOHR" Grid.Column="2" Grid.Row="1" Margin="5,0"></ComboBox>
+            <TextBox Grid.Column="0" Grid.Row="3" TextWrapping="Wrap" MaxLength="3999"
+              Grid.ColumnSpan="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="111" 
+                     Width="600" x:Name="txtRemark" 
+            HorizontalAlignment="Stretch"     GotFocus="ToHebrew"  >
+            </TextBox>
+            <Label Name="calculatedResult" Grid.Row="5" Grid.ColumnSpan="3" Margin="0,13,100,0" FlowDirection="LeftToRight" FontSize="16" Visibility="Hidden"></Label>
+        </Grid>
+
+    </Grid> 
+</UserControl>
